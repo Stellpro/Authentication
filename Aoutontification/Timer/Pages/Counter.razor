@@ -1,0 +1,12 @@
+﻿@page "/counter"
+@inherits CounterViewModel
+@using Timer.Data.Model
+<h1>Timer</h1>
+<div class="row">
+@Clock.Minit : @Clock.Secund
+</div>
+<button class="btn-success" @onclick="@(e=>Timer(Clock))" >start</button>
+<button class="btn-success" @onclick="@(e=>paused())">paused</button>
+<button class="btn-success" @onclick="@(e=>resturt())">restart</button>
+
+

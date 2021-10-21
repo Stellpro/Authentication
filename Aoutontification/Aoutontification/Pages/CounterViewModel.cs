@@ -52,15 +52,15 @@ namespace Aoutontification.Pages
             StateHasChanged();
         }
         public bool Flag = false;
-        public void ChangeFlag()
+        public bool ChangeFlag()
         {
             if (Flag == false)
             {
-                Flag = true;
+                return Flag = true;
             }
             else
             {
-                Flag = false;
+                return Flag = false;
             }
         }
     }

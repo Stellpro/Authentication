@@ -2,59 +2,67 @@
 @inherits CounterViewMode
 @using Microsoft.Extensions.Logging
 @using Aoutontification.Data.Model
-@if (Flag == false)
-{
-    <EditForm Model="@Data" OnValidSubmit="@HandleValidSubmit">
-        <DataAnnotationsValidator />
-        <ValidationSummary />
-        imail<br />
-        <InputText @bind-Value="@Data.EmailAdress" />
-        <br />password<br />
-        <InputText @bind-Value="@Data.Password" />
+@using MatBlazor
+
+
+<EditForm Model="@Data" OnValidSubmit="@HandleValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+    imail<br />
+    <InputText @bind-Value="@Data.EmailAdress" />
+    <br />password<br />
+    <InputText @bind-Value="@Data.Password" />
+    <br />
+    <button class="btn-success" @onclick="@(e=>Login(Data))">Log in</button>
+    <br />
+    <br />
+    <button class="btn-success" @onclick="@(e=>ChangeFlag())"> registration</button>
+</EditForm>
+@*<h1>Авторизация</h1>
+    <div class="container">
+        <div class="row">
+            <div class="col-4">
+                Imail
+                <br />
+                <input @bind-value:event="oninput" class="" @bind-value="@Data.Imail" type="text">Imail<input>
+                <br /> Password<br />
+                <input @bind-value:event="oninput" class="" @bind-value="@Data.Password" type="text">Password<input>
+            </div>
+        </div>
         <br />
         <button class="btn-success" @onclick="@(e=>Login(Data))">Log in</button>
         <br />
         <br />
         <button class="btn-success" @onclick="@(e=>ChangeFlag())"> registration</button>
-    </EditForm>
-    @*<h1>Авторизация</h1>
-        <div class="container">
-            <div class="row">
-                <div class="col-4">
-                    Imail
-                    <br />
-                    <input @bind-value:event="oninput" class="" @bind-value="@Data.Imail" type="text">Imail<input>
-                    <br /> Password<br />
-                    <input @bind-value:event="oninput" class="" @bind-value="@Data.Password" type="text">Password<input>
-                </div>
-            </div>
-            <br />
-            <button class="btn-success" @onclick="@(e=>Login(Data))">Log in</button>
-            <br />
-            <br />
-            <button class="btn-success" @onclick="@(e=>ChangeFlag())"> registration</button>
-        </div>*@
-}
-else
-{
-    <h1>Регистрация</h1>
-    <EditForm Model="@Data" OnValidSubmit="@HandleValidSubmit">
-        <DataAnnotationsValidator />
-        <ValidationSummary />
-        imail<br />
-        <InputText id="Email" @bind-Value="Data.EmailAdress" />
-        <br />password<br />
-        <InputText @bind-Value="Data.Password" />
-        <br />Phone<br />
-        <InputText @bind-Value="Data.PhoneNumb" />
+    </div>*@
 
-        <button type="submit" @onclick="@ChangeFlag">Apply</button>
+<MatDialog @bind-IsOpen="@Flag">
+    <MatDialogTitle>timer</MatDialogTitle>
+    <MatDialogContent>
+
+        <p>Регистрация</p>
+
+        <EditForm Model="@Data" OnValidSubmit="@HandleValidSubmit">
+            <DataAnnotationsValidator />
+            <ValidationSummary />
+            imail<br />
+            <InputText id="Email" @bind-Value="Data.EmailAdress" />
+            <br />password<br />
+            <InputText @bind-Value="Data.Password" />
+            <br />Phone<br />
+            <InputText @bind-Value="Data.PhoneNumb" />
+        </EditForm>
+    </MatDialogContent>
+
+    <MatDialogActions>
+        <button type="submit" @onclick="@(e=>ChangeFlag())">Apply</button>
         <button class="btn-danger" @onclick="@(e=>ChangeFlag())">Cancel</button>
-    </EditForm>
-}
+    </MatDialogActions>
+</MatDialog>
 
-@code {
-    
+@code
+ {
+
 
     private void HandleValidSubmit()
     {

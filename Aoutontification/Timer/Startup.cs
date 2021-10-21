@@ -1,4 +1,3 @@
-using Aoutontification.Data;
 using MatBlazor;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Components;
@@ -11,8 +10,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Timer.Data;
 
-namespace Aoutontification
+namespace Timer
 {
     public class Startup
     {
